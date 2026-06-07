@@ -1,0 +1,30 @@
+---
+import { icons, type IconName } from "../lib/icons";
+
+interface ValueItem {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  items: ValueItem[];
+}
+const { items } = Astro.props;
+---
+
+<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  {items.map((v) => {
+    const iconName = v.icon as IconName;
+    const svg = icons[iconName] ? icons[iconName]({ class: "h-6 w-6" }) : icons.shield({ class: "h-6 w-6" });
+    return (
+      <div class="card p-6">
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+          <Fragment set:html={svg} />
+        </span>
+        <h3 class="mt-4 text-lg font-semibold text-secondary-900">{v.title}</h3>
+        <p class="mt-2 text-sm text-secondary-600 leading-relaxed">{v.description}</p>
+      </div>
+    );
+  })}
+</div>

@@ -1,0 +1,82 @@
+---
+import { site } from "../data/site";
+import { icons } from "../lib/icons";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-secondary-900 text-secondary-200 mt-16">
+  <div class="container-page py-12 md:py-16 grid gap-10 md:grid-cols-3">
+    <!-- Brand & contact -->
+    <div>
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 text-white">
+          <Fragment set:html={icons.sparkles({ class: "h-5 w-5" })} />
+        </span>
+        <span class="text-lg font-bold text-white">{site.name}</span>
+      </a>
+      <p class="mt-4 text-sm leading-relaxed text-secondary-300 max-w-xs">
+        {site.tagline}
+      </p>
+      <div class="mt-6 space-y-2 text-sm">
+        <a href={site.phoneHref} class="flex items-center gap-2 hover:text-white transition-colors">
+          <Fragment set:html={icons.phone({ class: "h-4 w-4 text-primary-400" })} />
+          {site.phone}
+        </a>
+        <a href={site.emailHref} class="flex items-center gap-2 hover:text-white transition-colors">
+          <Fragment set:html={icons.mail({ class: "h-4 w-4 text-primary-400" })} />
+          {site.email}
+        </a>
+        <div class="flex items-start gap-2">
+          <Fragment set:html={icons.mapPin({ class: "h-4 w-4 text-primary-400 mt-0.5 flex-shrink-0" })} />
+          <span>
+            {site.address.line1}<br/>{site.address.line2}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hours -->
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-white">Office Hours</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        {site.hours.map((h) => (
+          <li class="flex items-center gap-2">
+            <Fragment set:html={icons.clock({ class: "h-4 w-4 text-primary-400" })} />
+            <span class="text-secondary-300">{h.day}:</span>
+            <span class="text-white">{h.time}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Links + social -->
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-widest text-white">Quick Links</h3>
+      <ul class="mt-4 grid grid-cols-2 gap-2 text-sm">
+        <li><a href="/services"    class="hover:text-white transition-colors">Services</a></li>
+        <li><a href="/about"       class="hover:text-white transition-colors">About</a></li>
+        <li><a href="/doctors"     class="hover:text-white transition-colors">Doctors</a></li>
+        <li><a href="/appointment" class="hover:text-white transition-colors">Book</a></li>
+        <li><a href="/contact"     class="hover:text-white transition-colors">Contact</a></li>
+      </ul>
+      <div class="mt-6 flex items-center gap-3">
+        <a href={site.social.facebook}  aria-label="Facebook"  class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary-800 hover:bg-primary-600 transition-colors">
+          <Fragment set:html={icons.facebook({ class: "h-4 w-4" })} />
+        </a>
+        <a href={site.social.instagram} aria-label="Instagram" class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary-800 hover:bg-primary-600 transition-colors">
+          <Fragment set:html={icons.instagram({ class: "h-4 w-4" })} />
+        </a>
+        <a href={site.social.twitter}   aria-label="Twitter"   class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary-800 hover:bg-primary-600 transition-colors">
+          <Fragment set:html={icons.twitter({ class: "h-4 w-4" })} />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-secondary-800">
+    <div class="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-secondary-400">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p>Built with care for healthier smiles.</p>
+    </div>
+  </div>
+</footer>

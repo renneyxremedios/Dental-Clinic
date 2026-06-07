@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import DoctorCard from "../components/DoctorCard.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Stats from "../components/Stats.astro";
+import { services, doctors, site } from "../data/site";
+---
+
+<BaseLayout title={site.name} description={site.description}>
+  <Hero
+    eyebrow="Welcome to {site.name}"
+    title="Advanced dental care for the whole family."
+    subtitle="Gentle, modern dentistry in a welcoming environment. New patients welcome — book your visit today."
+    primaryCta={{ label: "Book Appointment", href: "/appointment" }}
+    secondaryCta={{ label: "View Services", href: "/services" }}
+  />
+
+  <!-- Services preview -->
+  <section class="section">
+    <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="eyebrow">Our Services</span>
+        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Comprehensive care, under one roof</h2>
+        <p class="mt-3 text-lg text-secondary-600">From routine checkups to full smile makeovers.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.slice(0, 3).map((s) => <ServiceCard service={s} />)}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/services" class="btn btn-secondary">View all services →</a>
+      </div>
+    </div>
+  </section>
+
+  <Stats />
+
+  <!-- Doctors preview -->
+  <section class="section">
+    <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="eyebrow">Our Team</span>
+        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Meet our dentists</h2>
+        <p class="mt-3 text-lg text-secondary-600">Highly trained, compassionate professionals dedicated to your smile.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
+        {doctors.slice(0, 2).map((d) => <DoctorCard doctor={d} />)}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/doctors" class="btn btn-secondary">View all doctors →</a>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container-page">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-600 to-primary-800 p-10 md:p-16 text-center text-white shadow-lift">
+        <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary-400/30 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-primary-500/20 blur-3xl" aria-hidden="true"></div>
+        <h2 class="relative text-3xl md:text-4xl font-bold tracking-tight">Ready for a new smile?</h2>
+        <p class="relative mt-3 text-lg text-primary-100 max-w-xl mx-auto">
+          Book your appointment online in less than a minute. We'll confirm your slot within 24 hours.
+        </p>
+        <a href="/appointment" class="relative inline-flex mt-8 bg-white text-primary-700 hover:bg-primary-50 btn">
+          Book Appointment →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

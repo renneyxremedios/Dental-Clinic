@@ -1,0 +1,35 @@
+---
+import { icons } from "../lib/icons";
+import type { Doctor } from "../data/site";
+
+interface Props {
+  doctor: Doctor;
+}
+const { doctor } = Astro.props;
+---
+
+<article class="card card-interactive p-6 flex flex-col items-center text-center h-full">
+  <div class="relative w-32 h-32 rounded-full overflow-hidden bg-secondary-100 ring-4 ring-primary-50">
+    <img
+      src={doctor.photo}
+      alt={`Portrait of ${doctor.name}`}
+      width="128"
+      height="128"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover"
+    />
+  </div>
+  <h3 class="mt-4 text-lg font-semibold text-secondary-900">{doctor.name}</h3>
+  <p class="text-sm font-medium text-primary-700">{doctor.specialty}</p>
+  <p class="mt-2 text-sm text-secondary-600 leading-relaxed flex-1">
+    {doctor.bio}
+  </p>
+  <a
+    href="/appointment"
+    class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary-700 hover:text-primary-800"
+  >
+    Book with {doctor.name.split(" ").slice(-1)[0]}
+    <Fragment set:html={icons.arrowRight({ class: "h-4 w-4" })} />
+  </a>
+</article>

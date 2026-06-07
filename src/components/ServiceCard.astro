@@ -1,0 +1,28 @@
+---
+import { icons, type IconName } from "../lib/icons";
+import type { Service } from "../data/site";
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const iconName: IconName = service.icon;
+const iconSvg = icons[iconName]({ class: "h-6 w-6" });
+---
+
+<a
+  href={`/services#${service.slug}`}
+  class="card card-interactive p-6 flex flex-col gap-3 h-full"
+>
+  <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700">
+    <Fragment set:html={iconSvg} />
+  </span>
+  <h3 class="text-lg font-semibold text-secondary-900">{service.title}</h3>
+  <p class="text-sm text-secondary-600 leading-relaxed flex-1">
+    {service.description}
+  </p>
+  <span class="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary-700">
+    Learn more
+    <Fragment set:html={icons.arrowRight({ class: "h-4 w-4" })} />
+  </span>
+</a>

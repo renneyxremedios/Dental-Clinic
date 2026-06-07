@@ -1,0 +1,16 @@
+---
+import { stats } from "../data/site";
+---
+
+<section class="section bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+  <div class="container-page">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
+      {stats.map((s) => (
+        <div>
+          <div class="text-3xl md:text-4xl font-bold tracking-tight">{s.value}</div>
+          <div class="mt-1 text-sm text-primary-100">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

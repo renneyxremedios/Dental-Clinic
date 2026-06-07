@@ -1,0 +1,82 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ValueGrid from "../components/ValueGrid.astro";
+import Stats from "../components/Stats.astro";
+import { values, site } from "../data/site";
+---
+
+<BaseLayout
+  title="About Us"
+  description={`Learn about ${site.name} — our story, our values, and our commitment to exceptional patient care.`}
+>
+  <Hero
+    eyebrow="About Us"
+    title="A modern dental practice built around you."
+    subtitle="Two decades of gentle, patient-first dentistry in a comfortable, state-of-the-art environment."
+  />
+
+  <section class="section">
+    <div class="container-page grid gap-10 md:grid-cols-2 items-center">
+      <div>
+        <span class="eyebrow">Our story</span>
+        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">Patient-first dentistry, since 2004.</h2>
+        <div class="mt-4 space-y-4 text-secondary-600 leading-relaxed">
+          <p>
+            {site.name} was founded with a simple belief: going to the dentist shouldn't be stressful.
+            From the moment you walk through our doors, you'll be greeted by a warm team, treated in a
+            comfortable space, and cared for by dentists who take the time to listen.
+          </p>
+          <p>
+            Over the years, we've grown from a small two-chair office to a full-service practice with
+            specialists across general dentistry, orthodontics, oral surgery, and pediatric care —
+            but our mission hasn't changed: deliver the highest quality care with genuine compassion.
+          </p>
+          <p>
+            We invest in the latest technology — digital x-rays, 3D imaging, and gentle laser treatments —
+            so your visits are faster, more accurate, and more comfortable than ever.
+          </p>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary-100 shadow-lift">
+          <img
+            src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&h=675&fit=crop&q=80"
+            alt="Modern dental clinic reception area"
+            width="900"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="absolute -bottom-6 -left-6 hidden md:block bg-white rounded-2xl shadow-lift p-5 max-w-[200px]">
+          <div class="text-3xl font-bold text-primary-700">20+</div>
+          <div class="text-sm text-secondary-600">Years caring for our community</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-secondary-50">
+    <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="eyebrow">Our Core Values</span>
+        <h2 class="mt-2 text-3xl md:text-4xl font-bold tracking-tight">What guides everything we do</h2>
+      </div>
+      <ValueGrid items={values} />
+    </div>
+  </section>
+
+  <Stats />
+
+  <section class="section">
+    <div class="container-page text-center max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Meet the people behind your smile.</h2>
+      <p class="mt-3 text-secondary-600">
+        Our dentists combine years of training with the kind of warmth that makes every visit pleasant.
+      </p>
+      <a href="/doctors" class="btn btn-primary mt-6">View Our Doctors →</a>
+    </div>
+  </section>
+</BaseLayout>
